@@ -6,6 +6,13 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 
+const { JWT_PRIVATE_KEY } = process.env;
+
+
+
+const ERR_USER_ALREADY_EXISTS = "ERR_USER_ALREADY_EXISTS"
+const ERR_INSUFFICIENT_REQ = "ERR_INSUFFICIENT_REQ"
+const ERR_INVALID_CREDENTIALS = "ERR_INVALID_CREDENTIALS"
 
 
 
@@ -29,59 +36,44 @@ router.get("/register", async (req, res) => {
 
 // Register
 router.post("/register", async (req, res) => {
-
-    // Our register logic starts here
     try {
-        // Get user input
-
-        //
-        // console.log(req, res)
-        //
-
-        const { first_name, last_name, email, username, password } = req.body;
+        const { first_name, last_name, email, password } = req.body;
 
         // Validate user input
         if (!(email && password && first_name && last_name)) {
-            res.status(400).send("All input is required");
+            return res.status(400).send({ MSG: "All input is required", ERR: ERR_INSUFFICIENT_REQ });
         }
 
         // check if user already exist
-        // Validate if user exist in our database
-        const oldUser = await User.findOne({ email });
-
+        const oldUser = await User.findOne({ email: email });
         if (oldUser) {
-            return res.status(409).send("User Already Exist. Please Login");
+            return res.status(400).send({ MSG: "User already exists, please login", ERR: ERR_USER_ALREADY_EXISTS });
         }
 
-        //Encrypt user password
+        // Encrypt user password
         encryptedPassword = await bcrypt.hash(password, 10);
-        // Create user in our database
+        // Create user in database
         const user = await User.create({
             first_name,
             last_name,
             email: email.toLowerCase(), // sanitize: convert email to lowercase
-            username: username,
-            password: encryptedPassword,
+            password: encryptedPassword
         });
-        console.log(user.password)
+
+        const userType = user.userType
 
         // Create token
         const token = jwt.sign(
-            { user_id: user._id, email },
-            process.env.JWT_SECRET_TOKEN_KEY,
-            {
-                expiresIn: "2h",
-            }
+            { user_id: user._id, email, userType },
+            JWT_PRIVATE_KEY,
+            { expiresIn: "2h" }
         );
-        // save user token
-        user.token = token;
 
         // return new user
-        res.status(201).json({ user, token });
+        res.status(201).send({ user, token });
     } catch (err) {
         console.log(err);
     }
-    // Our register logic ends here
 });
 
 
@@ -95,47 +87,38 @@ router.get("/login", async (req, res) => {
 
 // Login
 router.post("/login", async (req, res) => {
-
-    // Our login logic starts here
     try {
-
-        // console.log(req.body)
         // Get user input
-        const { username, password } = req.body;
+        const { email, password } = req.body;
 
         // Validate user input
-        if (!(username && password)) {
-            res.status(400).send("All input is required");
+        if (!(email && password)) {
+            return res.status(400).send({ MSG: "All input is required", ERR: ERR_INSUFFICIENT_REQ });
         }
+
         // Validate if user exist in our database
-        const user = await User.findOne({ username: username })
-        // console.log("password", password)
-        // console.log("user.password", user.password)
-        // console.log("user", user)
+        const user = await User.findOne({ email: email })
 
         if (user && (await bcrypt.compare(password, user.password), (err) => {
             console.log(err)
         })) {
+
+            const userType = user.userType
+
             // Create token
             const token = jwt.sign(
-                { user_id: user._id, username },
-                process.env.JWT_SECRET_TOKEN_KEY,
-                {
-                    expiresIn: "2h",
-                }
+                { user_id: user._id, email, userType },
+                JWT_PRIVATE_KEY,
+                { expiresIn: "2h" }
             );
 
-            // save user token
-            user.token = token;
-
-            // user
-            return res.status(200).json({user, token});
+            return res.status(200).send({ user, token });
         }
-        return res.status(400).send("Invalid Credentials");
+
+        return res.status(400).send({ MSG: "Invalid Credentials", ERR: ERR_INVALID_CREDENTIALS });
     } catch (err) {
         console.log(err);
     }
-    // Our register logic ends here
 });
 
 
