@@ -11,7 +11,7 @@ const UserSchema = new mongoose.Schema(
         password: {
             type: String,
             required: true,
-            select: false
+            // select: false
         },
         username: {
             type: String,
@@ -19,7 +19,11 @@ const UserSchema = new mongoose.Schema(
             lowercase: true,
             unique: true
         },
-        name: {
+        first_name: {
+            type: String,
+            required: true
+        },
+        last_name: {
             type: String,
             required: true
         },
@@ -49,7 +53,7 @@ const UserSchema = new mongoose.Schema(
         // user completed email-verification or not
         isVerified: {
             type: Boolean,
-            required: true
+            default: false
         },
         // in case user delete account
         devices: {
