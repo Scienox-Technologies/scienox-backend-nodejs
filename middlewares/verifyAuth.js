@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-const { JWT_PRIVATE_KEY } = process.env;
+const JWT_PRIVATE_KEY = process.env.JWT_PRIVATE_KEY;
 
 
 const ERR_NO_TOKEN = "ERR_NO_TOKEN"

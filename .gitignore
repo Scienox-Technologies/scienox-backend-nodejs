@@ -1,10 +1,11 @@
-node_modules/
-.env
-
-
 package-lock.json
 
+.env
+
+node_modules/
 
 controllers/
 utilities/
 validators/
+
+temp/

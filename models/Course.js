@@ -14,10 +14,11 @@ const CourseSchema = new mongoose.Schema(
             type: String,
             required: true
         },
-        instructors_id: {
-            type: [String],
+        instructors_id: [{
+            type: mongoose.Types.ObjectId,
+            ref: "User",
             required: true
-        },
+        }],
         enrollmentCloseDate: {
             type: Date,
             require: true
@@ -34,7 +35,7 @@ const CourseSchema = new mongoose.Schema(
             type: String,
             required: true
         },
-        description: {
+        long_description: {
             type: String,
             required: true
         },
@@ -64,51 +65,52 @@ const CourseSchema = new mongoose.Schema(
             type: Array,
             required: true
         },
-        classes: {
-            type: [ClassSchema]
-        },
-        homework: {
-            type: [HomeworkSchema]
-        },
-        notes: {
-            type: [NoteSchema]
-        },
-        tests: {
-            type: [TestSchema]
-        },
-        files: {
-            type: [FileSchema]
-        },
+        // classes: {
+        //     type: [ClassSchema]
+        // },
+        // homework: {
+        //     type: [HomeworkSchema]
+        // },
+        // notes: {
+        //     type: [NoteSchema]
+        // },
+        // tests: {
+        //     type: [TestSchema]
+        // },
+        // files: {
+        //     type: [FileSchema]
+        // },
         // Downloads	0
         // Forum Topics	0
 
         enrolled_std_id: {
             type: [String]
         },
-        attended_std_id: {
-            type: [String]
-        },
-        isChatEnabled: {
-            type: Boolean,
-            default: false,
-        },
-        isDiscussionEnabled: {
-            type: Boolean,
-            default: false,
-        },
-        isOrderEnforced: {
-            type: Boolean,
-            default: false,
-        },
-        isStudentForumEnabled: {
-            type: Boolean,
-            default: false,
-        },
+        // attended_std_id: {
+        //     type: [String]
+        // },
+        // isChatEnabled: {
+        //     type: Boolean,
+        //     default: false,
+        // },
+        // isDiscussionEnabled: {
+        //     type: Boolean,
+        //     default: false,
+        // },
+        // isOrderEnforced: {
+        //     type: Boolean,
+        //     default: false,
+        // },
+        // isStudentForumEnabled: {
+        //     type: Boolean,
+        //     default: false,
+        // },
 
-        isPremium: {
-            type: Boolean,
-            default: false
-        },
+        // isPremium: {
+        //     type: Boolean,
+        //     default: false
+        // },
+
         // course is deleted
         isDeleted: {
             type: Boolean,

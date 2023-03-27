@@ -28,7 +28,9 @@
 
 // app.use(prefix, routes);
 
-require("./mongoose").connect();
+
+
+// require("./mongoose").connect();
 
 const express = require('express')
 const app = express();
@@ -46,6 +48,9 @@ app.use("/auth", authRoute)
 
 const usersRoute = require('../routes/users')
 app.use("/users", usersRoute)
+
+const coursesRoute = require('../routes/courses')
+app.use("/courses", coursesRoute)
 
 
 

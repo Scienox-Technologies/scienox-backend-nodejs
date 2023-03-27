@@ -7,23 +7,25 @@ const TokenSchema = new mongoose.Schema(
     {
         userId: {
             type: Schema.Types.ObjectId,
-            ref: 'User'
+            required: true,
+            ref: "User",
+            unique: true,
         },
-        refreshToken: {
+        token: {
             type: String,
             required: true
         },
-        expiresIn: {
-            type: Date,
-            required: true
-        },
-        createdByIp: {
+        createdByIP: {
             type: String,
             required: true
         },
-        status: {
+        isActive: {
             type: Boolean,
             default: true
+        },
+        expiryAt: {
+            type: Date,
+            required: true
         }
     },
     {

@@ -29,40 +29,59 @@ const UserSchema = new mongoose.Schema(
             type: String,
             default: 'https://freepngimg.com/thumb/google/66726-customer-account-google-service-button-search-logo.png'
         },
-        gender: {
-            type: String,
-            enum: ['male', 'female', 'other']
-        },
-        userType: {
-            type: String,
-            enum: ['admin', 'instructor', 'student'],
-            default: "student"
-        },
-        language: {
-            type: String,
-            enum: ['en', 'hi', 'mr'],
-            default: 'en'
-        },
+        // gender: {
+        //     type: String,
+        //     enum: ['male', 'female', 'other']
+        // },
+
+        // userType: {
+        //     type: String,
+        //     enum: ['admin', 'instructor', 'student'],
+        //     default: "student"
+        // },
+
+        // language: {
+        //     type: String,
+        //     enum: ['en', 'hi', 'mr'],
+        //     default: 'en'
+        // },
         college: {
-        type: String,
+            type: String,
         },
-        isPremium: {
-            type: Boolean,
-            default: false
-        },
+
+        EnrolledCourses_id: [{
+            type: mongoose.Types.ObjectId,
+            ref: "User",
+            required: true
+        }],
+
+        // isPremium: {
+        //     type: Boolean,
+        //     default: false
+        // },
+
         // user completed email verification or not
-        isEmailVerified: {
-            type: Boolean,
-            default: false
-        },
+        // isEmailVerified: {
+        //     type: Boolean,
+        //     default: false
+        // },
+        // emailVerifiedAt: {
+        //     type: Date,
+        // },
+
         // user completed mobile verification or not
-        isMobileVerified: {
-            type: Boolean,
-            default: false
-        },
-        devices: {
-            type: Array,
-        },
+        // isMobileVerified: {
+        //     type: Boolean,
+        //     default: false
+        // },
+        // mobileVerifiedAt: {
+        //     type: Date,
+        // },
+
+        // devices: {
+        //     type: Array,
+        // },
+
         // user account is active or deleted
         isDeleted: {
             type: Boolean,

@@ -6,7 +6,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 
-const { JWT_PRIVATE_KEY } = process.env;
+const JWT_PRIVATE_KEY = process.env.JWT_PRIVATE_KEY;
 
 
 
