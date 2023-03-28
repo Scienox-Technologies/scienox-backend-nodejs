@@ -30,16 +30,14 @@
 
 
 
-// require("./mongoose").connect();
 
 const express = require('express')
 const app = express();
 app.set('trust proxy', true)
 // app.enable('trust proxy')
 
-const bodyParser = require('body-parser')
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json())
+// app.use(bodyParser.urlencoded({ extended: true }));
 
 
 
@@ -49,16 +47,13 @@ app.use("/auth", authRoute)
 const usersRoute = require('../routes/users')
 app.use("/users", usersRoute)
 
-const coursesRoute = require('../routes/courses')
-app.use("/courses", coursesRoute)
+// const coursesRoute = require('../routes/courses')
+// app.use("/courses", coursesRoute)
 
 
 
 const { verifyToken } = require("../middlewares/verifyAuth.js");
 
-app.get("/", verifyToken, (req, res) => {
-    res.status(200).send("Welcome 🙌 ");
-});
 
 
 module.exports = app;

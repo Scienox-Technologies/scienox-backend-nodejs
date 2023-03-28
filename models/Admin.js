@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const UserSchema = new mongoose.Schema(
+const AdminSchema = new mongoose.Schema(
     {
         first_name: {
             type: String,
@@ -13,12 +13,12 @@ const UserSchema = new mongoose.Schema(
         email: {
             type: String,
             required: true,
-            unique: true,
+            // unique: true,
             lowercase: true,
         },
         mobile: {
             type: String,
-            unique: true
+            // unique: true
         },
         password: {
             type: String,
@@ -33,19 +33,18 @@ const UserSchema = new mongoose.Schema(
         //     type: String,
         //     enum: ['male', 'female', 'other']
         // },
-        userType: {
+        user_type: {
             type: String,
             enum: ['admin', 'instructor', 'student'],
-            default: "student"
+            default: "admin",
+            required: true
         },
         // language: {
         //     type: String,
         //     enum: ['en', 'hi', 'mr'],
         //     default: 'en'
         // },
-        college: {
-            type: String,
-        },
+
         // isPremium: {
         //     type: Boolean,
         //     default: false
@@ -86,4 +85,4 @@ const UserSchema = new mongoose.Schema(
 );
 
 
-module.exports = mongoose.model("User", UserSchema);
+module.exports = mongoose.model("Admin", AdminSchema);

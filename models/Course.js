@@ -1,11 +1,11 @@
 const mongoose = require("mongoose")
 
 
-const ClassSchema = require("../models/class")
-const HomeworkSchema = require("../models/homework")
-const NoteSchema = require("../models/note")
-const TestSchema = require("../models/test")
-const FileSchema = require("../models/file")
+// const ClassSchema = require("../models/class")
+// const HomeworkSchema = require("../models/homework")
+// const NoteSchema = require("../models/note")
+// const TestSchema = require("../models/test")
+// const FileSchema = require("../models/file")
 
 
 const CourseSchema = new mongoose.Schema(

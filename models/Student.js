@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const UserSchema = new mongoose.Schema(
+const StudentSchema = new mongoose.Schema(
     {
         first_name: {
             type: String,
@@ -18,7 +18,7 @@ const UserSchema = new mongoose.Schema(
         },
         mobile: {
             type: String,
-            unique: true
+            // unique: true
         },
         password: {
             type: String,
@@ -34,22 +34,24 @@ const UserSchema = new mongoose.Schema(
         //     enum: ['male', 'female', 'other']
         // },
 
-        // userType: {
-        //     type: String,
-        //     enum: ['admin', 'instructor', 'student'],
-        //     default: "student"
-        // },
+        user_type: {
+            type: String,
+            enum: ['admin', 'instructor', 'student'],
+            default: "student",
+            required: true
+        },
 
         // language: {
         //     type: String,
         //     enum: ['en', 'hi', 'mr'],
         //     default: 'en'
         // },
+
         college: {
             type: String,
         },
 
-        EnrolledCourses_id: [{
+        enrolledCourses_id: [{
             type: mongoose.Types.ObjectId,
             ref: "User",
             required: true
@@ -98,4 +100,4 @@ const UserSchema = new mongoose.Schema(
 );
 
 
-module.exports = mongoose.model("User", UserSchema);
+module.exports = mongoose.model("Student", StudentSchema);

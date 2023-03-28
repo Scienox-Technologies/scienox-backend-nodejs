@@ -4,7 +4,6 @@ package-lock.json
 
 node_modules/
 
-controllers/
 utilities/
 validators/
 

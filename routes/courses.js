@@ -29,7 +29,7 @@ require("dotenv").config();
 
 
 // importing user context
-const User = require("../models/user");
+const User = require("../models/User");
 
 
 // router.get("/:id", async (req, res) => {
