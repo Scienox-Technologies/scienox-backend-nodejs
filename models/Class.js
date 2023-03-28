@@ -1,25 +1,32 @@
-const mongoose = require("mongoose");
+const mongoose = require("mongoose")
+
 
 const ClassSchema = new mongoose.Schema(
     {
-        name: {
+        topic: {
             type: String,
             required: true
         },
-        Date: {
+        course_id: {
+            type: mongoose.Types.ObjectId,
+            ref: "Course",
+            required: true
+        },
+        startDate: {
             type: Date,
             require: true
         },
-        startTime: {
+        endDate: {
             type: Date,
             require: true
         },
-        endTime: {
-            type: Date,
-            require: true
-        },
-        topics_covered: {
+        short_description: {
             type: String,
+            required: true
+        },
+        long_description: {
+            type: String,
+            required: true
         },
         imgUrl: {
             type: String,
@@ -34,12 +41,33 @@ const ClassSchema = new mongoose.Schema(
             type: String,
             required: true
         },
-        // course account is active or deleted
+        files_id: [{
+            type: mongoose.Types.ObjectId,
+            ref: "File",
+        }],
+
+        // homework: {
+        //     type: [HomeworkSchema]
+        // },
+        // notes: {
+        //     type: [NoteSchema]
+        // },
+        // tests: {
+        //     type: [TestSchema]
+        // },
+
+        // Downloads	0
+        // Forum Topics	0
+
+        // attended_std_id: [{
+        //     type: mongoose.Types.ObjectId,
+        //     ref: "Student",
+        // }],
+
         isDeleted: {
             type: Boolean,
             default: false,
         },
-        // in case user delete account
         deletedAt: {
             type: Date
         }

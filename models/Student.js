@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+
 const StudentSchema = new mongoose.Schema(
     {
         first_name: {
@@ -13,7 +14,7 @@ const StudentSchema = new mongoose.Schema(
         email: {
             type: String,
             required: true,
-            unique: true,
+            // unique: true,
             lowercase: true,
         },
         mobile: {
@@ -29,11 +30,10 @@ const StudentSchema = new mongoose.Schema(
             type: String,
             default: 'https://freepngimg.com/thumb/google/66726-customer-account-google-service-button-search-logo.png'
         },
-        // gender: {
-        //     type: String,
-        //     enum: ['male', 'female', 'other']
-        // },
-
+        gender: {
+            type: String,
+            enum: ['male', 'female', 'other']
+        },
         user_type: {
             type: String,
             enum: ['admin', 'instructor', 'student'],
@@ -53,7 +53,7 @@ const StudentSchema = new mongoose.Schema(
 
         enrolledCourses_id: [{
             type: mongoose.Types.ObjectId,
-            ref: "User",
+            ref: "Course",
             required: true
         }],
 
@@ -84,12 +84,10 @@ const StudentSchema = new mongoose.Schema(
         //     type: Array,
         // },
 
-        // user account is active or deleted
         isDeleted: {
             type: Boolean,
             default: false,
         },
-        // in case user delete account
         deletedAt: {
             type: Date
         }

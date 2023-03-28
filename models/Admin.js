@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+
 const AdminSchema = new mongoose.Schema(
     {
         first_name: {
@@ -45,11 +46,6 @@ const AdminSchema = new mongoose.Schema(
         //     default: 'en'
         // },
 
-        // isPremium: {
-        //     type: Boolean,
-        //     default: false
-        // },
-
         // user completed email verification or not
         // isEmailVerified: {
         //     type: Boolean,
@@ -64,17 +60,18 @@ const AdminSchema = new mongoose.Schema(
         //     type: Boolean,
         //     default: false
         // },
+        // mobileVerifiedAt: {
+        //     type: Date,
+        // },
 
         // devices: {
         //     type: Array,
         // },
 
-        // user account is active or deleted
         isDeleted: {
             type: Boolean,
             default: false,
         },
-        // in case user delete account
         deletedAt: {
             type: Date
         }

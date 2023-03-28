@@ -1,29 +1,33 @@
-require("dotenv").config();
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
+require("dotenv").config()
+const bcrypt = require("bcrypt")
+const jwt = require("jsonwebtoken")
 
-const User = require("../models/User");
+const Admin = require("../../models/Admin")
+const Student = require("../../models/Student")
+const Instructor = require("../../models/Instructor")
 
-const JWT_PRIVATE_KEY = process.env.JWT_PRIVATE_KEY;
+const RES_CODES = require("../../constants/resCodes.js")
 
-const ERR_INVALID_USER_TYPE = "ERR_INVALID_USER_TYPE"
-const ERR_NO_USERS_FOUND = "ERR_NO_USERS_FOUND"
-const ERR_INVALID_USER_ID = "ERR_INVALID_USER_ID"
-const ERR_USER_ALREADY_DELETED = "ERR_USER_ALREADY_DELETED"
-const ERR_USER_ALREADY_EXISTS = "ERR_USER_ALREADY_EXISTS"
+const JWT_PRIVATE_KEY = process.env.JWT_PRIVATE_KEY
+const JWT_TOKEN_VALIDITY = process.env.JWT_TOKEN_VALIDITY
 
 
-export default async (req, res) => {
+const getUser = async (req, res) => {
     try {
-        const user = await User.findById(req.params.id)
+        const user = await Admin.findById(req.params.userId)
+            || await Student.findById(req.params.userId)
+            || await Instructor.findById(req.params.userId)
 
         if (!user) {
-            return res.status(409).send({ MSG: "No user with given id", ERR: ERR_INVALID_USER_ID });
+            return res.status(RES_CODES.STATUS_ERR_CLIENT_NOT_FOUND).send({ MSG: "No user with given id", ERR: RES_CODES.ERR_INVALID_USER_ID });
         }
 
         const { password, ...others } = user._doc;
-        return res.status(201).send(others);
+        return res.status(RES_CODES.STATUS_SUCCESS_OK).send(others);
     } catch (err) {
         console.log(err);
     }
 }
+
+
+module.exports = { getUser }

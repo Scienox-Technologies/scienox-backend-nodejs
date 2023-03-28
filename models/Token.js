@@ -1,8 +1,6 @@
-// import modules
 const mongoose = require("mongoose");
 
 
-// Token schema
 const TokenSchema = new mongoose.Schema(
     {
         userId: {
@@ -34,5 +32,4 @@ const TokenSchema = new mongoose.Schema(
 );
 
 
-// export Token schema
 module.exports = mongoose.model("Token", TokenSchema);

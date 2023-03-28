@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+
 const InstructorSchema = new mongoose.Schema(
     {
         first_name: {
@@ -13,7 +14,7 @@ const InstructorSchema = new mongoose.Schema(
         email: {
             type: String,
             required: true,
-            unique: true,
+            // unique: true,
             lowercase: true,
         },
         mobile: {
@@ -47,14 +48,9 @@ const InstructorSchema = new mongoose.Schema(
 
         createdCourses_id: [{
             type: mongoose.Types.ObjectId,
-            ref: "User",
+            ref: "Course",
             required: true
         }],
-
-        // isPremium: {
-        //     type: Boolean,
-        //     default: false
-        // },
 
         // user completed email verification or not
         // isEmailVerified: {
@@ -75,12 +71,10 @@ const InstructorSchema = new mongoose.Schema(
         //     type: Array,
         // },
 
-        // user account is active or deleted
         isDeleted: {
             type: Boolean,
             default: false,
         },
-        // in case user delete account
         deletedAt: {
             type: Date
         }

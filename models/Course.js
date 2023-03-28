@@ -1,13 +1,6 @@
 const mongoose = require("mongoose")
 
 
-// const ClassSchema = require("../models/class")
-// const HomeworkSchema = require("../models/homework")
-// const NoteSchema = require("../models/note")
-// const TestSchema = require("../models/test")
-// const FileSchema = require("../models/file")
-
-
 const CourseSchema = new mongoose.Schema(
     {
         name: {
@@ -16,8 +9,7 @@ const CourseSchema = new mongoose.Schema(
         },
         instructors_id: [{
             type: mongoose.Types.ObjectId,
-            ref: "User",
-            required: true
+            ref: "Instructor",
         }],
         enrollmentCloseDate: {
             type: Date,
@@ -39,12 +31,12 @@ const CourseSchema = new mongoose.Schema(
             type: String,
             required: true
         },
-        cost: {
+        fee: {
             type: Number,
             required: true,
             default: 0
         },
-        capacity: {
+        student_capacity: {
             type: Number,
             required: true
         },
@@ -65,30 +57,15 @@ const CourseSchema = new mongoose.Schema(
             type: Array,
             required: true
         },
-        // classes: {
-        //     type: [ClassSchema]
-        // },
-        // homework: {
-        //     type: [HomeworkSchema]
-        // },
-        // notes: {
-        //     type: [NoteSchema]
-        // },
-        // tests: {
-        //     type: [TestSchema]
-        // },
-        // files: {
-        //     type: [FileSchema]
-        // },
-        // Downloads	0
-        // Forum Topics	0
+        classes_id: [{
+            type: mongoose.Types.ObjectId,
+            ref: "Class",
+        }],
+        enrolled_std_id: [{
+            type: mongoose.Types.ObjectId,
+            ref: "Student",
+        }],
 
-        enrolled_std_id: {
-            type: [String]
-        },
-        // attended_std_id: {
-        //     type: [String]
-        // },
         // isChatEnabled: {
         //     type: Boolean,
         //     default: false,
@@ -97,26 +74,15 @@ const CourseSchema = new mongoose.Schema(
         //     type: Boolean,
         //     default: false,
         // },
-        // isOrderEnforced: {
-        //     type: Boolean,
-        //     default: false,
-        // },
         // isStudentForumEnabled: {
         //     type: Boolean,
         //     default: false,
         // },
 
-        // isPremium: {
-        //     type: Boolean,
-        //     default: false
-        // },
-
-        // course is deleted
         isDeleted: {
             type: Boolean,
             default: false,
         },
-        // in case course deleted
         deletedAt: {
             type: Date
         }

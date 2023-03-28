@@ -13,14 +13,14 @@ const { verifyTokenAndAuthorization, verifyTokenAndAdmin } = require("../middlew
 // Get all users
 router.get("/", verifyTokenAndAdmin, getUsers);
 
-// // Get Individual User
-// router.get("/:id", verifyTokenAndAdmin, getUser);
+// Get Individual User
+router.get("/:userId", verifyTokenAndAdmin, getUser);
 
-// // Delete User
-// router.delete("/:id", verifyTokenAndAuthorization, deleteUser);
+// Delete User
+router.delete("/:userId", verifyTokenAndAuthorization, deleteUser);
 
-// // Update User
-// router.put("/:id", verifyTokenAndAuthorization, updateUser);
+// Update User
+router.put("/:userId", verifyTokenAndAuthorization, updateUser);
 
 // Create User
 router.post("/", verifyTokenAndAdmin, createUser);
