@@ -40,7 +40,7 @@ router.get("/upload-lecture-file", (req, res)=>{
     res.render("uploadFile.ejs")
 })
 // router.post("/upload-lecture-file", verifyTokenAndInstructor, uploadFile)
-router.post("/upload-lecture-file", documentUpload, uploadFile)
+// router.post("/upload-lecture-file", documentUpload, uploadFile)
 
 
 // export router
