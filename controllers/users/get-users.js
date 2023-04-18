@@ -1,33 +1,33 @@
-require("dotenv").config()
-const bcrypt = require("bcrypt")
-const jwt = require("jsonwebtoken")
-
+// database models
 const Admin = require("../../models/Admin")
 const Student = require("../../models/Student")
 const Instructor = require("../../models/Instructor")
 
+// response codes
 const RES_CODES = require("../../constants/resCodes.js")
 
-const JWT_PRIVATE_KEY = process.env.JWT_PRIVATE_KEY
-const JWT_TOKEN_VALIDITY = process.env.JWT_TOKEN_VALIDITY
 
-
+// get all users function
 const getUsers = async (req, res) => {
     try {
-        // Get user input
+        // select required data from request url query
         const QUERIES = req.query
 
-        // Get all users
+        // fetch all users without password
         const admins = await Admin.find(QUERIES, { password: 0 })
         const students = await Student.find(QUERIES, { password: 0 })
         const instructors = await Instructor.find(QUERIES, { password: 0 })
 
+        // add users in single array
         const users = [...admins, ...students, ...instructors]
 
-        if (!users.length) {
-            return res.status(RES_CODES.STATUS_ERR_CLIENT_NOT_FOUND).send({ MSG: "No users found", ERR: RES_CODES.ERR_USERS_NOT_FOUND });
+        // check if no users are found
+        const NO_USERS_FETCHED = users.length === 0
+        if (NO_USERS_FETCHED) {
+            return res.status(RES_CODES.STATUS_ERR_CLIENT_NOT_FOUND).send({ MSG: "No users found", ERR: RES_CODES.ERR_USERS_NOT_FOUND })
         }
 
+        // send all users data
         return res.status(RES_CODES.STATUS_SUCCESS_OK).send(users)
     } catch (err) {
         console.log(err)
@@ -35,4 +35,5 @@ const getUsers = async (req, res) => {
 }
 
 
-module.exports = { getUsers }
+// export function
+module.exports = getUsers

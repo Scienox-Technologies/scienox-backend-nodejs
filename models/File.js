@@ -11,9 +11,9 @@ const FileSchema = new mongoose.Schema(
             type: String,
             required: true
         },
-        class_id: {
+        lecture_id: {
             type: mongoose.Types.ObjectId,
-            ref: "Class",
+            ref: "Lecture",
             required: true
         },
         storagepath: {
@@ -40,7 +40,7 @@ const FileSchema = new mongoose.Schema(
     {
         timestamps: true
     }
-);
+)
 
 
-module.exports = mongoose.model("File", FileSchema);
+module.exports = mongoose.model("File", FileSchema)

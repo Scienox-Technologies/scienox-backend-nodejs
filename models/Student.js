@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require("mongoose")
 
 
 const StudentSchema = new mongoose.Schema(
@@ -14,52 +14,34 @@ const StudentSchema = new mongoose.Schema(
         email: {
             type: String,
             required: true,
-            // unique: true,
-            lowercase: true,
+            unique: true
         },
-        mobile: {
-            type: String,
-            // unique: true
-        },
+        // mobile: {
+        //     type: String,
+        //     unique: true
+        // },
         password: {
             type: String,
-            required: true,
-            // select: false
+            required: true
         },
         photoUrl: {
             type: String,
             default: 'https://freepngimg.com/thumb/google/66726-customer-account-google-service-button-search-logo.png'
         },
-        gender: {
-            type: String,
-            enum: ['male', 'female', 'other']
-        },
+        // gender: {
+        //     type: String,
+        //     enum: ['male', 'female', 'other']
+        // },
         user_type: {
             type: String,
             enum: ['admin', 'instructor', 'student'],
             default: "student",
             required: true
         },
-
         // language: {
         //     type: String,
         //     enum: ['en', 'hi', 'mr'],
         //     default: 'en'
-        // },
-
-        college: {
-            type: String,
-        },
-
-        enrolledCourses_id: [{
-            type: mongoose.Types.ObjectId,
-            ref: "Course",
-            required: true
-        }],
-
-        // isPremium: {
-        //     type: Boolean,
-        //     default: false
         // },
 
         // user completed email verification or not
@@ -84,6 +66,36 @@ const StudentSchema = new mongoose.Schema(
         //     type: Array,
         // },
 
+        // isPremium: {
+        //     type: Boolean,
+        //     default: false
+        // },
+
+        enrolledCourses: [{
+            enrolledCourse_id: {
+                type: mongoose.Types.ObjectId,
+                ref: "Course",
+            },
+            enrolledAt: {
+                type: Date,
+                required: true
+            },
+            _id : false
+        }],
+
+        college: {
+            type: String,
+        },
+
+        creator_id: {
+            type: mongoose.Types.ObjectId
+        },
+        creator_type: {
+            type: String,
+            enum: ['admin', 'self'],
+            required: true
+        },
+
         isDeleted: {
             type: Boolean,
             default: false,
@@ -95,7 +107,7 @@ const StudentSchema = new mongoose.Schema(
     {
         timestamps: true
     }
-);
+)
 
 
-module.exports = mongoose.model("Student", StudentSchema);
+module.exports = mongoose.model("Student", StudentSchema)

@@ -1,29 +1,32 @@
+// packages
 const router = require('express').Router()
-const {
-    getUsers,
-    getUser,
-    deleteUser,
-    updateUser,
-    createUser
-} = require('../controllers/users/index.js');
 
-const { verifyTokenAndAuthorization, verifyTokenAndAdmin } = require("../middlewares/verifyAuth.js");
+// user controllers
+const getUsers = require('../controllers/users/get-users.js')
+const getUser = require('../controllers/users/get-user.js')
+const deleteUser = require('../controllers/users/delete-user.js')
+const updateUser = require('../controllers/users/update-user.js')
+const createUser = require('../controllers/users/create-user.js')
 
-
-// Get all users
-router.get("/", verifyTokenAndAdmin, getUsers);
-
-// Get Individual User
-router.get("/:userId", verifyTokenAndAdmin, getUser);
-
-// Delete User
-router.delete("/:userId", verifyTokenAndAuthorization, deleteUser);
-
-// Update User
-router.put("/:userId", verifyTokenAndAuthorization, updateUser);
-
-// Create User
-router.post("/", verifyTokenAndAdmin, createUser);
+// middlewares
+const { verifyTokenAndAuthorization, verifyTokenAndAdmin } = require("../middlewares/verifyAuth.js")
 
 
-module.exports = router;
+// get all users with filters in url query
+router.get("/get-users", verifyTokenAndAdmin, getUsers)
+
+// get individual user
+router.get("/get-user/:userType/:userId", verifyTokenAndAuthorization, getUser)
+
+// delete User
+router.delete("/delete-user/:userType/:userId", verifyTokenAndAuthorization, deleteUser)
+
+// update User
+router.put("/update-user/:userType/:userId", verifyTokenAndAuthorization, updateUser)
+
+// create User
+router.post("/create-user", verifyTokenAndAdmin, createUser)
+
+
+// export router
+module.exports = router

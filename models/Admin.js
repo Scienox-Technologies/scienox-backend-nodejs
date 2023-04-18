@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require("mongoose")
 
 
 const AdminSchema = new mongoose.Schema(
@@ -14,17 +14,15 @@ const AdminSchema = new mongoose.Schema(
         email: {
             type: String,
             required: true,
-            // unique: true,
-            lowercase: true,
+            unique: true
         },
-        mobile: {
-            type: String,
-            // unique: true
-        },
+        // mobile: {
+        //     type: String,
+        //     unique: true
+        // },
         password: {
             type: String,
-            required: true,
-            // select: false
+            required: true
         },
         photoUrl: {
             type: String,
@@ -68,6 +66,35 @@ const AdminSchema = new mongoose.Schema(
         //     type: Array,
         // },
 
+        createdCourses_id: [{
+            type: mongoose.Types.ObjectId,
+            ref: "Course",
+        }],
+        createdLectures_id: [{
+            type: mongoose.Types.ObjectId,
+            ref: "Lecture",
+        }],
+
+        createdStudents_id: [{
+            type: mongoose.Types.ObjectId,
+            ref: "Student",
+        }],
+        createdInstructors_id: [{
+            type: mongoose.Types.ObjectId,
+            ref: "Instructor"
+        }],
+        createdAdmins_id: [{
+            type: mongoose.Types.ObjectId,
+            ref: "Instructor"
+        }],
+
+        creator_id: {
+            type: mongoose.Types.ObjectId
+        },
+        creator_type: {
+            type: String,
+            default: "admin"
+        },
         isDeleted: {
             type: Boolean,
             default: false,
@@ -79,7 +106,7 @@ const AdminSchema = new mongoose.Schema(
     {
         timestamps: true
     }
-);
+)
 
 
-module.exports = mongoose.model("Admin", AdminSchema);
+module.exports = mongoose.model("Admin", AdminSchema)

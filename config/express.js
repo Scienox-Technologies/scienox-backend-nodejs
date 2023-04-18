@@ -1,59 +1,82 @@
-// import routes from './../api/routes/index.js';
-// import { logger } from '../utils/index.js';
-
-
-
 // const cors = require('cors')
-// app.use(cors());
+// app.use(cors())
 
 // const compression = require('compression')
-// app.use(compression());
+// app.use(compression())
 
 // const morgan = require('morgan')
-// app.use(morgan('dev'));
+// app.use(morgan('dev'))
 
 // const helmet = require('helmet')
-// app.use(helmet());
+// app.use(helmet())
 
 // const expressValidator = require('express-validator')
-// app.use(expressValidator());
+// app.use(expressValidator())
 
-// const rateLimiter = require('../api/middlewares/index.js')
-// app.use(rateLimiter);
+// const rateLimiter = require('../api/middlewares/rate-limiter.js')
+// app.use(rateLimiter)
 
 
-// app.use(express.static('public'));
-// app.disable('x-powered-by');
-// app.disable('etag');
+// app.use(express.static('public'))
+// app.disable('x-powered-by')
+// app.disable('etag')
 
-// app.use(prefix, routes);
+// app.use(prefix, routes)
 
 
 
 
 const express = require('express')
-const app = express();
+const app = express()
 app.set('trust proxy', true)
 // app.enable('trust proxy')
 
 app.use(express.json())
-// app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.urlencoded({ extended: true }))
 
 
 
+
+// set the view engine to ejs
+app.set('view engine', 'ejs');
+
+
+
+
+
+// auth route
 const authRoute = require('../routes/auth')
 app.use("/auth", authRoute)
 
+// users route
 const usersRoute = require('../routes/users')
 app.use("/users", usersRoute)
 
-// const coursesRoute = require('../routes/courses')
-// app.use("/courses", coursesRoute)
+// courses route
+const coursesRoute = require('../routes/courses')
+app.use("/courses", coursesRoute)
+
+// lectures route
+const lecturesRoute = require('../routes/lectures')
+app.use("/lectures", lecturesRoute)
 
 
-
-const { verifyToken } = require("../middlewares/verifyAuth.js");
-
+module.exports = app
 
 
-module.exports = app;
+/*
+// ---- users ----
+changePassword
+editUser
+deleteUser
+getUser
+
+// ---- auth ----
+register
+login
+logout
+forgot-password
+verify-email
+send-verification-code
+refresh-token
+*/

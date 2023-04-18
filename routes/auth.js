@@ -1,15 +1,17 @@
+// packages
 const router = require('express').Router()
-const {
-    registerUser,
-    loginUser
-} = require('../controllers/auth/index.js');
+
+// user controllers
+const register = require('../controllers/auth/register.js')
+const login = require('../controllers/auth/login.js')
 
 
-// Register
-router.post('/register', registerUser);
+// register
+router.post('/register', register)
 
-// Login
-router.post("/login", loginUser);
+// login
+router.post("/login", login)
 
 
-module.exports = router;
+// export router
+module.exports = router

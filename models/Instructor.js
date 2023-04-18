@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require("mongoose")
 
 
 const InstructorSchema = new mongoose.Schema(
@@ -14,17 +14,15 @@ const InstructorSchema = new mongoose.Schema(
         email: {
             type: String,
             required: true,
-            // unique: true,
-            lowercase: true,
+            unique: true,
         },
-        mobile: {
-            type: String,
-            // unique: true
-        },
+        // mobile: {
+        //     type: String,
+        //     unique: true
+        // },
         password: {
             type: String,
             required: true,
-            // select: false
         },
         photoUrl: {
             type: String,
@@ -46,12 +44,6 @@ const InstructorSchema = new mongoose.Schema(
         //     default: 'en'
         // },
 
-        createdCourses_id: [{
-            type: mongoose.Types.ObjectId,
-            ref: "Course",
-            required: true
-        }],
-
         // user completed email verification or not
         // isEmailVerified: {
         //     type: Boolean,
@@ -66,10 +58,36 @@ const InstructorSchema = new mongoose.Schema(
         //     type: Boolean,
         //     default: false
         // },
+        // mobileVerifiedAt: {
+        //     type: Date,
+        // },
 
         // devices: {
         //     type: Array,
         // },
+
+        teachingCourses_id: [{
+            type: mongoose.Types.ObjectId,
+            ref: "Course",
+        }],
+
+        createdCourses_id: [{
+            type: mongoose.Types.ObjectId,
+            ref: "Course",
+        }],
+        createdLectures_id: [{
+            type: mongoose.Types.ObjectId,
+            ref: "Lecture",
+        }],
+
+        creator_id: {
+            type: mongoose.Types.ObjectId
+        },
+        creator_type: {
+            type: String,
+            enum: ['admin', 'self'],
+            required: true
+        },
 
         isDeleted: {
             type: Boolean,
@@ -82,7 +100,7 @@ const InstructorSchema = new mongoose.Schema(
     {
         timestamps: true
     }
-);
+)
 
 
-module.exports = mongoose.model("Instructor", InstructorSchema);
+module.exports = mongoose.model("Instructor", InstructorSchema)
