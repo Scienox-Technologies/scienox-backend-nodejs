@@ -9,7 +9,7 @@ const PORT = process.env.API_PORT || 3000
 
 // base route 
 app.get("/", (req, res) => {
-    res.send("Production API is working")
+    res.render("api-doc.ejs")
 })
 
 

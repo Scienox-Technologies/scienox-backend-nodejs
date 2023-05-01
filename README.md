@@ -1,12 +1,16 @@
-# scienox-backend-api-nodejs
+# scienox-backend-nodejs
 
 Nodejs backend APIs for the MVP
 
-## Api documentation with examples (Postman)
+## API Base URL
+
+
+
+## API Documentation with examples (Postman)
 
 <https://documenter.getpostman.com/view/26608704/2s93eU1ttn>
 
-## Implemented features
+## Implemented Features
 
 - User registration and login
 - Separate authorisation for admin, instructor, student
@@ -34,13 +38,13 @@ Create a .env file and copy contents of .env.sample to the .env file
 
 Enter the value of MONGO_URI and change other values if required
 
-#### Install dependancies:
+### Install Dependancies
 
 ```
 npm install
 ```
 
-#### Start the development server:
+### Start the development server
 
 ```
 npm run dev
@@ -81,7 +85,7 @@ Backend server will start running on <http://localhost:3000> or the port value g
 ## Directory structure
 
 ```
-scienox-backend-api-nodejs
+scienox-backend-nodejs
         |__ config
         |       |__ express.js
         |       |__ mongoose.js
