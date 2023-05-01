@@ -4,7 +4,7 @@ Nodejs backend APIs for the MVP
 
 ## API Base URL
 
-
+<https://scienox-backend-nodejs.onrender.com>
 
 ## API Documentation with examples (Postman)
 
