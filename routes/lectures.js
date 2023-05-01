@@ -38,11 +38,6 @@ router.post("/create-lecture", verifyTokenAndInstructor, createLecture)
 // upload file
 router.post("/upload-lecture-file/:lectureId", verifyTokenAndLectureInstructor, documentUpload.single("lecture_file"), uploadLectureFile)
 
-router.get("/upload-lecture-file", (req, res) => {
-    res.render("uploadLectureFile.ejs")
-})
-
-
 
 // export router
 module.exports = router

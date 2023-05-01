@@ -4,7 +4,7 @@ const dbConnection = require("./config/mongoose")
 const app = require("./config/express")
 
 
-const PORT = process.env.API_PORT || 8000
+const PORT = process.env.API_PORT || 3000
 
 
 // base route 
