@@ -32,9 +32,9 @@ Clone this repository or download as zip and extract
 
 Create a .env file and copy contents of .env.sample to the .env file
 
-Enter the value of MONGO_URI and change othervalues if required
+Enter the value of MONGO_URI and change other values if required
 
-Install dependancies
+Install dependancies:
 
 ```
 npm install
@@ -46,7 +46,7 @@ Start the development server:
 npm run dev
 ```
 
-Backend server will start running on <http://localhost:3000> or other port as value given for API_PORT in .env file
+Backend server will start running on <http://localhost:3000> or the port value given for API_PORT in .env file
 
 ## API endpoints
 
