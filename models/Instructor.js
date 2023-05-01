@@ -79,6 +79,10 @@ const InstructorSchema = new mongoose.Schema(
             type: mongoose.Types.ObjectId,
             ref: "Lecture",
         }],
+        createdFiles_id: [{
+            type: mongoose.Types.ObjectId,
+            ref: "File",
+        }],
 
         creator_id: {
             type: mongoose.Types.ObjectId

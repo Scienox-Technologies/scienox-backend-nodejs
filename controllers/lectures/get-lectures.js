@@ -11,7 +11,7 @@ const getLectures = async (req, res) => {
         // select required data from request url query
         const QUERIES = req.query
 
-        // fetch all lectures without password
+        // fetch all lectures
         const lectures = await Lecture.find(QUERIES)
 
         // check if no lectures are found

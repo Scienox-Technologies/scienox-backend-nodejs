@@ -11,7 +11,7 @@ const getCourses = async (req, res) => {
         // select required data from request url query
         const QUERIES = req.query
 
-        // fetch all courses without password
+        // fetch all courses
         const courses = await Course.find(QUERIES)
 
         // check if no courses are found

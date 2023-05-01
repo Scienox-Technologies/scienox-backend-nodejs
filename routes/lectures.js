@@ -7,7 +7,7 @@ const getLecture = require('../controllers/lectures/get-lecture.js')
 const deleteLecture = require('../controllers/lectures/delete-lecture.js')
 const updateLecture = require('../controllers/lectures/update-lecture.js')
 const createLecture = require('../controllers/lectures/create-lecture.js')
-const uploadFile = require('../controllers/lectures/upload-file.js')
+const uploadLectureFile = require('../controllers/lectures/upload-lecture-file.js')
 
 // middlewares
 const {
@@ -36,11 +36,12 @@ router.put("/update-lecture/:lectureId", verifyTokenAndLectureInstructor, update
 router.post("/create-lecture", verifyTokenAndInstructor, createLecture)
 
 // upload file
-router.get("/upload-lecture-file", (req, res)=>{
-    res.render("uploadFile.ejs")
+router.post("/upload-lecture-file/:lectureId", verifyTokenAndLectureInstructor, documentUpload.single("lecture_file"), uploadLectureFile)
+
+router.get("/upload-lecture-file", (req, res) => {
+    res.render("uploadLectureFile.ejs")
 })
-// router.post("/upload-lecture-file", verifyTokenAndInstructor, uploadFile)
-// router.post("/upload-lecture-file", documentUpload, uploadFile)
+
 
 
 // export router

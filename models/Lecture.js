@@ -48,16 +48,8 @@ const LectureSchema = new mongoose.Schema(
         }],
 
         files: [{
-            file_id: {
-                type: mongoose.Types.ObjectId,
-                ref: "File",
-            },
-            file_type: {
-                type: String,
-                required: true,
-                default: "class-material"
-            },
-            _id: false
+            type: mongoose.Types.ObjectId,
+            ref: "File",
         }],
 
 

@@ -11,7 +11,7 @@ const deleteCourse = async (req, res) => {
         // select required data from request url parameters
         const course_id = req.params.courseId
 
-        // fetch course without password
+        // fetch course
         const COURSE = await Course.findById(course_id)
 
         // check if course exists or is deleted

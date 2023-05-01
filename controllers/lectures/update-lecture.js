@@ -11,7 +11,7 @@ const updateLecture = async (req, res) => {
         // select required data from request url parameters
         const lecture_id = req.params.lectureId
 
-        // fetch lecture without password
+        // fetch lecture
         const LECTURE = await Lecture.findById(lecture_id)
 
         // check if lecture exists or is deleted

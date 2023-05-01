@@ -74,6 +74,10 @@ const AdminSchema = new mongoose.Schema(
             type: mongoose.Types.ObjectId,
             ref: "Lecture",
         }],
+        createdFiles_id: [{
+            type: mongoose.Types.ObjectId,
+            ref: "File",
+        }],
 
         createdStudents_id: [{
             type: mongoose.Types.ObjectId,

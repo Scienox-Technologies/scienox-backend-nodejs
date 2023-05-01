@@ -11,7 +11,7 @@ const getLecture = async (req, res) => {
         // select required data from request url parameters
         const lecture_id = req.params.lectureId
 
-        // fetch lecture without password
+        // fetch lecture
         const lecture = await Lecture.findById(lecture_id)
         // check if lecture exists
         const LECTURE_NOT_EXISTS = lecture === null

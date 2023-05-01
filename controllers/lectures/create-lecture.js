@@ -12,7 +12,6 @@ const RES_CODES = require("../../constants/resCodes.js");
 const createLecture = async (req, res) => {
     try {
         // select required data from request body
-        const lecture_topic = req.body.lecture_topic
         const course_id = req.body.course_id
 
         // creator details
