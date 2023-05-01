@@ -34,13 +34,13 @@ Create a .env file and copy contents of .env.sample to the .env file
 
 Enter the value of MONGO_URI and change other values if required
 
-Install dependancies:
+#### Install dependancies:
 
 ```
 npm install
 ```
 
-Start the development server:
+#### Start the development server:
 
 ```
 npm run dev
