@@ -26,9 +26,9 @@ Nodejs backend APIs for the MVP
 - Express - <https://expressjs.com/en/5x/api.html>
 - MongoDB - <https://www.mongodb.com/docs/>
 - Mongoose - <https://mongoosejs.com/docs/guide.html>
-- JSON - <https://www.npmjs.com/package/jsonwebtoken>
-- Multer - <https://www.npmjs.com/package/multer>
+- JWT - <https://www.npmjs.com/package/jsonwebtoken>
 - Bcrypt - <https://www.npmjs.com/package/bcrypt>
+- Multer - <https://www.npmjs.com/package/multer>
 
 ## Getting Started
 
